@@ -1,9 +1,11 @@
 from django.contrib import admin
-from .models import Category, Product, Statistics, Application
+from .models import Category, Product, Statistics, Application, AboutUs
+
 
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ['name']
     search_fields = ['name']
+
 
 class ProductAdmin(admin.ModelAdmin):
     list_display = ['name', 'category', 'price']
@@ -11,9 +13,11 @@ class ProductAdmin(admin.ModelAdmin):
     search_fields = ['name']
     list_per_page = 20
 
+
 class StatisticsAdmin(admin.ModelAdmin):
     list_display = ['count_looms', 'experience', 'bir_kunlik_chiqim']
     search_fields = ['count_looms']
+
 
 # class ApplicationAdmin(admin.ModelAdmin):
 #     list_display = ['name', 'phone_number', 'email', 'checked', 'date']
@@ -30,6 +34,7 @@ from django.contrib import admin
 from django.utils.html import format_html
 from .models import Application
 
+
 class ApplicationAdmin(admin.ModelAdmin):
     list_display = ['name', 'phone_number', 'email', 'display_checked', 'date']
     list_filter = ['checked']
@@ -45,4 +50,16 @@ class ApplicationAdmin(admin.ModelAdmin):
 
     display_checked.short_description = 'Checked'
 
+
 admin.site.register(Application, ApplicationAdmin)
+
+
+@admin.register(AboutUs)
+class AboutUsAdmin(admin.ModelAdmin):
+    list_display = ('content',)
+    fields = ('content',)
+    readonly_fields = ('content',)
+
+    def has_add_permission(self, request):
+        # Disable the ability to add new AboutUs instances
+        return False

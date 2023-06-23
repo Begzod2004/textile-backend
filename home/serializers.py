@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Category, Product, Statistics, Application
+from .models import Category, Product, Statistics, Application, AboutUs
 
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
@@ -35,3 +35,15 @@ class ApplicationSerializer(serializers.ModelSerializer):
             return "✅"
         else:
             return "❌"
+
+
+class AboutUsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AboutUs
+        fields = ['content']
+        read_only_fields = ['content']
+        # fields = '__all__'
+        # exclude = ['content']
+        # read_only_fields = ['content']
+
+
