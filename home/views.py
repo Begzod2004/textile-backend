@@ -43,3 +43,4 @@ class AboutUsView(APIView):
             return Response(serializer.data)
         else:
             return Response({'content': 'About Us content not found.'})
+

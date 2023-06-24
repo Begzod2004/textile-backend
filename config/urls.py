@@ -11,18 +11,36 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
 
+# schema_view = get_schema_view(
+#     openapi.Info(
+#         title="Texitile",
+#         default_version='v1',
+#         description="Texitile sistem",
+#         terms_of_service="https://www.google.com/policies/terms/",
+#         contact=openapi.Contact(email="contact@snippets.local"),
+#         license=openapi.License(name="BSD License"),
+#     ),
+#     public=True,
+#     permission_classes=[permissions.AllowAny],
+# )
+
 schema_view = get_schema_view(
     openapi.Info(
-        title="Texitile",
-        default_version='v1',
-        description="Texitile sistem",
-        terms_of_service="https://www.google.com/policies/terms/",
-        contact=openapi.Contact(email="contact@snippets.local"),
+        title="API-niz",
+        default_version="v1",
+        description="API tavsifi",
+        terms_of_service="https://www.example.com/terms/",
+        contact=openapi.Contact(email="contact@example.com"),
         license=openapi.License(name="BSD License"),
     ),
     public=True,
-    permission_classes=[permissions.AllowAny],
+    authentication_classes=[],
+    permission_classes=[],
+    # generator_class=CustomOpenAPISchemaGenerator,
+    # api_sorter_class=CustomAPISorter
 )
+
+
 
 urlpatterns = [
     # swagger
