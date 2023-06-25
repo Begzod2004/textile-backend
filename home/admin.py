@@ -1,6 +1,8 @@
 from django.contrib import admin
 from .models import Category, Product, Statistics, Application, AboutUs
-
+from django.contrib import admin
+from django.utils.html import format_html
+from .models import Application
 
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ['name']
@@ -30,13 +32,11 @@ admin.site.register(Category, CategoryAdmin)
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Statistics, StatisticsAdmin)
 # admin.site.register(Application, ApplicationAdmin)
-from django.contrib import admin
-from django.utils.html import format_html
-from .models import Application
+
 
 
 class ApplicationAdmin(admin.ModelAdmin):
-    list_display = ['name', 'phone_number', 'email', 'display_checked', 'date']
+    list_display = ['name', 'phone_number', 'display_checked', 'date']
     list_filter = ['checked']
     search_fields = ['name', 'phone_number', 'email']
     list_per_page = 50

@@ -12,7 +12,6 @@ class Category(models.Model):
 class Product(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     name = models.CharField(max_length=123, help_text="Назначение")
-    image = models.ImageField(upload_to='media/')
     price = models.PositiveIntegerField()
     composition = models.CharField(max_length=123, help_text="Состав:")
     weight = models.CharField(max_length=123, help_text="Плотность")
@@ -20,6 +19,11 @@ class Product(models.Model):
     length_per_kg = models.CharField(max_length=123, help_text="Длина на кг")
     minimum_order = models.CharField(max_length=123, help_text="Минимальный заказ")
     delivery_time = models.CharField(max_length=123, help_text="Срок поставки")
+    image_1 = models.ImageField(upload_to='media/', blank=True, null=True)
+    image_2 = models.ImageField(upload_to='media/', blank=True, null=True)
+    image_3 = models.ImageField(upload_to='media/', blank=True, null=True)
+    image_4 = models.ImageField(upload_to='media/', blank=True, null=True)
+    image_5 = models.ImageField(upload_to='media/', blank=True, null=True)
 
     def __str__(self):
         return self.name
@@ -37,7 +41,6 @@ class Statistics(models.Model):
 class Application(models.Model):
     name = models.CharField(max_length=123, help_text="Nomi")
     phone_number = models.CharField(max_length=100, unique=True, help_text="Telefon raqami")
-    email = models.EmailField(max_length=100, unique=True, help_text="Email")
     checked = models.BooleanField(default=False, help_text="Tekshirilganmi?")
     text = models.TextField(help_text="Matn")
     date = models.DateTimeField(auto_now_add=True, help_text="Sana")

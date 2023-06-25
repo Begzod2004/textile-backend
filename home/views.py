@@ -7,12 +7,22 @@ from .serializers import CategorySerializer, ProductSerializer, StatisticsSerial
     AboutUsSerializer
 
 
-class CategoryListCreateView(generics.ListCreateAPIView):
+class CategoryListView(generics.ListCreateAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
 
 
-class ProductListCreateView(generics.ListCreateAPIView):
+class CategoryDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+
+
+class ProductListView(generics.ListCreateAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+
+
+class ProductDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
 
@@ -22,25 +32,21 @@ class StatisticsListCreateView(generics.ListCreateAPIView):
     serializer_class = StatisticsSerializer
 
 
-class ApplicationListCreateView(generics.ListCreateAPIView):
+class ApplicationListView(generics.ListCreateAPIView):
     queryset = Application.objects.all()
     serializer_class = ApplicationSerializer
 
 
-def post(request):
-    serializer = AboutUsSerializer(data=request.data)
-    if serializer.is_valid():
-        serializer.save()
-        return Response(serializer.data)
-    return Response(serializer.errors, status=400)
+class ApplicationDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Application.objects.all()
+    serializer_class = ApplicationSerializer
 
 
-class AboutUsView(APIView):
-    def get(self, request):
-        about_us = AboutUs.objects.first()
-        if about_us:
-            serializer = AboutUsSerializer(about_us)
-            return Response(serializer.data)
-        else:
-            return Response({'content': 'About Us content not found.'})
+class AboutUsListView(generics.ListCreateAPIView):
+    queryset = AboutUs.objects.all()
+    serializer_class = AboutUsSerializer
 
+
+class AboutUsDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = AboutUs.objects.all()
+    serializer_class = AboutUsSerializer
