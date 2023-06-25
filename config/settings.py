@@ -32,7 +32,6 @@ ALLOWED_HOSTS = ["*"]
 
 INSTALLED_APPS = [
     'jazzmin',
-    # 'django_filters',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -45,17 +44,15 @@ INSTALLED_APPS = [
     'drf_yasg',
     'corsheaders',
     'rest_framework.authtoken',
-    # local app
     'home',
-
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -64,36 +61,29 @@ MIDDLEWARE = [
 
 # cors headers ->
 CORS_ALLOWED_ORIGINS = [
-    "http://127.0.0.1:3000",
-    "http://localhost:3000",
+    'http://localhost:3000',  # Replace with the actual origin of your frontend application
 ]
 
 CORS_ALLOW_METHODS = [
-    '*'
+    'GET',
+    'POST',
+    'PUT',
+    'PATCH',
+    'DELETE',
+    'OPTIONS',
 ]
 
 CORS_ALLOW_HEADERS = [
-    '*'
+    'Accept',
+    'Accept-Language',
+    'Content-Type',
+    'Authorization',
 ]
+
 CORS_ALLOW_CREDENTIALS = True
-
-
-CORS_ORIGIN_ALLOW_ALL = True
-# CORS_ORIGIN_WHITELIST = os.getenv('CORS_ORIGIN_WHITELIST').split()
-# CORS_ORIGIN_REGEX_WHITELIST = [
-#     '%r' % value
-#     for value in getenv('CORS_ORIGIN_REGEX_WHITELIST', type=list, default=[])
-# ]
-# CORS_ALLOW_HEADERS = getenv(
-#     'CORS_ALLOW_HEADERS', type=list, default=list(default_headers)
-# )
-# CORS_ALLOW_METHODS = getenv(
-#     'CORS_ALLOW_METHODS', type=list, default=list(default_methods)
-# )
 
 # Django REST framework
 # http://www.django-rest-framework.org/api-guide/settings/
-
 
 ROOT_URLCONF = 'config.urls'
 
@@ -171,7 +161,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        # 'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.TokenAuthentication',
         'rest_framework_simplejwt.authentication.JWTAuthentication',
@@ -193,33 +182,6 @@ PARLER_LANGUAGES = {
         'hide_untranslated': False,
     }
 }
-
-customColorPalette = [
-    {
-        'color': 'hsl(4, 90%, 58%)',
-        'label': 'Red'
-    },
-    {
-        'color': 'hsl(340, 82%, 52%)',
-        'label': 'Pink'
-    },
-    {
-        'color': 'hsl(291, 64%, 42%)',
-        'label': 'Purple'
-    },
-    {
-        'color': 'hsl(262, 52%, 47%)',
-        'label': 'Deep Purple'
-    },
-    {
-        'color': 'hsl(231, 48%, 48%)',
-        'label': 'Indigo'
-    },
-    {
-        'color': 'hsl(207, 90%, 54%)',
-        'label': 'Blue'
-    },
-]
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(days=7),
