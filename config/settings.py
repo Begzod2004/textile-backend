@@ -51,14 +51,17 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    "django.middleware.security.SecurityMiddleware",
-    "django.contrib.sessions.middleware.SessionMiddleware",
-    "django.middleware.common.CommonMiddleware",
-    "django.middleware.csrf.CsrfViewMiddleware",
-    "django.contrib.auth.middleware.AuthenticationMiddleware",
-    "django.contrib.messages.middleware.MessageMiddleware",
-    "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "corsheaders.middleware.CorsMiddleware",
+    'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+   
+    # Custom middleware
+    'core.middleware.RevisionMiddleware',
 ]
 
 
@@ -76,6 +79,24 @@ CORS_ALLOW_HEADERS = [
     '*'
 ]
 CORS_ALLOW_CREDENTIALS = True
+
+
+CORS_ORIGIN_ALLOW_ALL = True
+# CORS_ORIGIN_WHITELIST = os.getenv('CORS_ORIGIN_WHITELIST').split()
+# CORS_ORIGIN_REGEX_WHITELIST = [
+#     '%r' % value
+#     for value in getenv('CORS_ORIGIN_REGEX_WHITELIST', type=list, default=[])
+# ]
+# CORS_ALLOW_HEADERS = getenv(
+#     'CORS_ALLOW_HEADERS', type=list, default=list(default_headers)
+# )
+# CORS_ALLOW_METHODS = getenv(
+#     'CORS_ALLOW_METHODS', type=list, default=list(default_methods)
+# )
+
+# Django REST framework
+# http://www.django-rest-framework.org/api-guide/settings/
+
 
 ROOT_URLCONF = 'config.urls'
 
