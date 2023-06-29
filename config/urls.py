@@ -26,7 +26,7 @@ from rest_framework_simplejwt.views import (
 
 schema_view = get_schema_view(
     openapi.Info(
-        title="API-niz",
+        title="Textile schema",
         default_version="v1",
         description="API tavsifi",
         terms_of_service="https://www.example.com/terms/",
@@ -55,7 +55,7 @@ urlpatterns = [
 
 urlpatterns += [
     # admin
-    path('admin/', admin.site.urls),
+    path('omax/', admin.site.urls),
 
     # local urls
     path('home/', include('home.urls')),
